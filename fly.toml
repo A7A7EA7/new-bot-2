@@ -1,0 +1,37 @@
+# Fly.io config — https://fly.io/docs/reference/configuration/
+# Run `fly launch --copy-config --no-deploy` then `fly deploy`.
+app = "world-money-bot"
+primary_region = "fra"
+
+[build]
+  dockerfile = "Dockerfile"
+
+[env]
+  NODE_ENV = "production"
+  PORT = "8080"
+  DATABASE_URL = "/app/data/bot.db"
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = false
+  auto_start_machines = true
+  min_machines_running = 1
+  processes = ["app"]
+
+  [http_service.checks]
+    [http_service.checks.health]
+      grace_period = "10s"
+      interval = "30s"
+      method = "GET"
+      timeout = "5s"
+      path = "/api/healthz"
+
+[[mounts]]
+  source = "bot_data"
+  destination = "/app/data"
+
+[[vm]]
+  cpu_kind = "shared"
+  cpus = 1
+  memory_mb = 512

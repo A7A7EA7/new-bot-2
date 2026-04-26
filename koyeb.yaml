@@ -1,0 +1,33 @@
+# Koyeb deployment manifest — https://www.koyeb.com/docs/build-and-deploy/build-from-git
+# Use this with the Koyeb CLI: `koyeb app init --file koyeb.yaml`
+name: world-money-bot
+services:
+  - name: bot
+    type: web
+    git:
+      branch: main
+      build_command: ""
+      run_command: node --enable-source-maps artifacts/api-server/dist/index.mjs
+      buildpack:
+        builder: dockerfile
+    instance_types:
+      - type: nano
+    ports:
+      - port: 8080
+        protocol: http
+    routes:
+      - path: /
+        port: 8080
+    health_checks:
+      - http:
+          path: /api/healthz
+          port: 8080
+    env:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: "8080"
+      - key: DATABASE_URL
+        value: /app/data/bot.db
+      - key: TELEGRAM_BOT_TOKEN
+        secret: telegram-bot-token

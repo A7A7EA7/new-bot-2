@@ -1,0 +1,15 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "rootDir": "src",
+    "types": ["node"],
+    "noImplicitReturns": false
+  },
+  "include": ["src"],
+  "references": [
+    {
+      "path": "../../lib/db"
+    }
+  ]
+}

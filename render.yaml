@@ -1,0 +1,24 @@
+# Render Blueprint — https://render.com/docs/blueprint-spec
+# Click "New" → "Blueprint" on Render and point it at this repo.
+services:
+  - type: web
+    name: world-money-bot
+    runtime: docker
+    plan: starter
+    region: frankfurt
+    healthCheckPath: /api/healthz
+    envVars:
+      - key: TELEGRAM_BOT_TOKEN
+        sync: false
+      - key: BOT_OWNER_ID
+        sync: false
+      - key: OWNER_EMAIL
+        sync: false
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        value: /var/data/bot.db
+    disk:
+      name: bot-data
+      mountPath: /var/data
+      sizeGB: 1

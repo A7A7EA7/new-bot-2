@@ -1,0 +1,34 @@
+**/node_modules
+**/dist
+**/.turbo
+**/.cache
+**/.expo
+**/.next
+**/coverage
+**/*.tsbuildinfo
+
+# Local SQLite data — do NOT bake the dev DB into the image; use a volume.
+data/
+*.db
+*.db-shm
+*.db-wal
+
+# VCS / editor / OS junk
+.git
+.gitignore
+.github
+.idea
+.vscode
+.DS_Store
+Thumbs.db
+
+# Replit-only files (irrelevant on other hosts)
+.replit
+.replitignore
+.local
+.upm
+.config
+
+# Local env files — secrets are injected by the host
+.env
+.env.*

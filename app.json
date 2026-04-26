@@ -1,0 +1,25 @@
+{
+  "name": "World Money Telegram Bot",
+  "description": "Telegram loan-offers bot (Telegraf + SQLite). Long-polling, no webhook setup required.",
+  "stack": "container",
+  "env": {
+    "TELEGRAM_BOT_TOKEN": {
+      "description": "Bot token from @BotFather on Telegram.",
+      "required": true
+    },
+    "BOT_OWNER_ID": {
+      "description": "Optional. Telegram user ID of the bot owner (admin).",
+      "required": false
+    },
+    "OWNER_EMAIL": {
+      "description": "Optional. Contact email displayed in the bot.",
+      "required": false
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "basic"
+    }
+  }
+}
